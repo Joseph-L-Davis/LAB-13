@@ -13,12 +13,14 @@ describe('User routes', () => {
       .post('/api/v1/auth/signup')
       .send({
         email: 'this is an email',
-        password: 'password'
+        password: 'password',
+        profilePhotoUrl: 'oohLookAtMe'
       });
 
     expect(res.body).toEqual({
       id: '1',
       email: 'this is an email',
+      profilePhotoUrl: 'oohLookAtMe'
     });
   });
 });
