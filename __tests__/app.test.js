@@ -1,7 +1,9 @@
 import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
-import request, { agent } from 'supertest';
+import request from 'supertest';
 import app from '../lib/app.js';
+
+const agent = request.agent(app);
 
 describe('User routes', () => {
   beforeAll(() => {
@@ -16,7 +18,7 @@ describe('User routes', () => {
         password: 'password',
         profilePhotoUrl: 'oohLookAtMe'
       });
-    console.log(res.body);
+
     expect(res.body).toEqual({
       id: '1',
       email: 'this is an email',
@@ -28,13 +30,15 @@ describe('User routes', () => {
     const res = await agent
       .post('/api/v1/auth/login')
       .send({
-        email: 'its an email',
+        email: 'this is an email',
         password: 'password'
       });
+    console.log(res.body);
 
     expect(res.body).toEqual({
       id: '1',
-      email: 'its an email'
+      email: 'this is an email',
+      profilePhotoUrl: 'oohLookAtMe'
     });
   });
 });
