@@ -2,6 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Post from '../lib/models/Post.js';
 
 
 describe('User routes', () => {
@@ -79,4 +80,16 @@ describe('User routes', () => {
       tags: ['a', 'b']
     });
   });
+
+  it('PATCH post' async () => {
+    const post1 = await agent
+      .post('/api/v1/posts')
+      .send({
+        photoUrl: 'URL',
+        caption: 'oohlala',
+        tags: ['a', 'b']
+      });
+
+    return;
+  })
 });
