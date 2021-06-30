@@ -7,23 +7,23 @@ import app from '../lib/app.js';
 describe('User routes', () => {
   const agent = request.agent(app);
   beforeAll(async () => {
-    
-    return setup(pool);
-  });
-  
-  it('POST a new post', async () => {
-    const user = await agent
+    const firstPost = await agent
       .post('/api/v1/auth/signup')
       .send({
         email: 'this is an email',
         password: 'password',
         profilePhotoUrl: 'oohLookAtMe'
       });
+    
+    return setup(pool);
+  });
+  
+  it('POST a new post', async () => {
 
     const res = await agent
       .post('/api/v1/posts')
       .send({
-        user_id: '1',
+        user_id: '2',
         photoUrl: 'URL',
         caption: 'oohlala',
         tags: ['a', 'b']
@@ -31,10 +31,24 @@ describe('User routes', () => {
 
     expect(res.body).toEqual({
       id: '1',
-      userId: '1',
+      userId: '2',
       photoUrl: 'URL',
       caption: 'oohlala',
       tags: ['a', 'b']
     });
-  });  
+  });
+  
+  it('GET all posts', async () => {
+      
+    const res = await agent.get('/api/v1/posts');
+
+    expect(res.body).toEqual([{
+      id: '1',
+      userId: '2',
+      photoUrl: 'URL',
+      caption: 'oohlala',
+      tags: ['a', 'b']
+    }]);
+      
+  });
 });
