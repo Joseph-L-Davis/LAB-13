@@ -16,7 +16,7 @@ describe('User routes', () => {
         password: 'password',
         profilePhotoUrl: 'oohLookAtMe'
       });
-
+    console.log(res.body);
     expect(res.body).toEqual({
       id: '1',
       email: 'this is an email',
