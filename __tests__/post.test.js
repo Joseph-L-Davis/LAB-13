@@ -19,7 +19,6 @@ describe('User routes', () => {
         password: 'password',
         profilePhotoUrl: 'oohLookAtMe'
       });
-    console.log(user.body);
 
     const res = await agent
       .post('/api/v1/posts')
