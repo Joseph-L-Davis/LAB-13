@@ -19,4 +19,4 @@ CREATE TABLE comments (
     comment_by BIGINT NOT NULL,
     post BIGINT NOT NULL,
     comment TEXT NOT NULL
-)
+);
