@@ -7,7 +7,7 @@ import app from '../lib/app.js';
 describe('User routes', () => {
   const agent = request.agent(app);
   beforeAll(async () => {
-    const firstPost = await agent
+    await agent
       .post('/api/v1/auth/signup')
       .send({
         email: 'this is an email',
