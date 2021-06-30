@@ -71,7 +71,7 @@ describe('User routes', () => {
       });
 
     const res = await agent.get('/api/v1/posts/1');
-    console.log(res.body);
+
     expect(res.body).toEqual({
       id: '1',
       userId: '1',
@@ -81,7 +81,7 @@ describe('User routes', () => {
     });
   });
 
-  it('PATCH post' async () => {
+  it('PATCH post', async () => {
     const post1 = await agent
       .post('/api/v1/posts')
       .send({
@@ -90,8 +90,16 @@ describe('User routes', () => {
         tags: ['a', 'b']
       });
 
-      const 
+    const patchedPost = await Post.updateItem(post1.body.id, { caption: 'banana' });
 
-    return;
-  })
+    const res = await agent.get(`/api/v1/posts/${patchedPost.id}`);
+
+    expect(res.body).toEqual({
+      id: '1',
+      userId: '1',
+      photoUrl: 'URL',
+      caption: 'banana',
+      tags: ['a', 'b']
+    });
+  });
 });
