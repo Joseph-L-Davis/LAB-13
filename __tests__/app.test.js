@@ -41,4 +41,8 @@ describe('User routes', () => {
       profilePhotoUrl: 'oohLookAtMe'
     });
   });
+
+  it('POST a new post', async () => {
+    return;
+  });
 });
