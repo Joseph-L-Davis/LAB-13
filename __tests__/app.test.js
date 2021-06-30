@@ -5,7 +5,7 @@ import app from '../lib/app.js';
 
 const agent = request.agent(app);
 
-describe.skip('User routes', () => {
+describe('User routes', () => {
   beforeAll(() => {
     return setup(pool);
   });
@@ -40,9 +40,5 @@ describe.skip('User routes', () => {
       email: 'this is an email',
       profilePhotoUrl: 'oohLookAtMe'
     });
-  });
-
-  it('POST a new post', async () => {
-    return;
   });
 });
