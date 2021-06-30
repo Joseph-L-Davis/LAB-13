@@ -1,6 +1,6 @@
 import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
-import request from 'supertest';
+import request, { agent } from 'supertest';
 import app from '../lib/app.js';
 
 describe('User routes', () => {
@@ -21,6 +21,20 @@ describe('User routes', () => {
       id: '1',
       email: 'this is an email',
       profilePhotoUrl: 'oohLookAtMe'
+    });
+  });
+
+  it('POST a login', async () => { 
+    const res = await agent
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'its an email',
+        password: 'password'
+      });
+
+    expect(res.body).toEqual({
+      id: '1',
+      email: 'its an email'
     });
   });
 });
