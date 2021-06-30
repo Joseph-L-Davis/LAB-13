@@ -7,8 +7,9 @@ CREATE TABLE users (
     profile_photo_url TEXT NOT NULL
 );
 CREATE TABLE posts (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id BIGINT NOT NULL,
     photo_url TEXT NOT NULL,
     caption TEXT NOT NULL,
-    tags TEXT NOT NULL
+    tags TEXT [] NOT NULL
 );

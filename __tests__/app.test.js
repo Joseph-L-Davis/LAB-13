@@ -5,7 +5,7 @@ import app from '../lib/app.js';
 
 const agent = request.agent(app);
 
-describe('User routes', () => {
+describe.skip('User routes', () => {
   beforeAll(() => {
     return setup(pool);
   });
@@ -33,7 +33,7 @@ describe('User routes', () => {
         email: 'this is an email',
         password: 'password'
       });
-    console.log(res.body);
+
 
     expect(res.body).toEqual({
       id: '1',
