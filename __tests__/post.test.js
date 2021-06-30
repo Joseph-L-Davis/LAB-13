@@ -90,7 +90,7 @@ describe('User routes', () => {
         tags: ['a', 'b']
       });
 
-    const patchedPost = await Post.updateItem(post1.body.id, { caption: 'banana' });
+    const patchedPost = await Post.updateItem(post1.body.id, post1.body.userId, { caption: 'banana' });
 
     const res = await agent.get(`/api/v1/posts/${patchedPost.id}`);
 
@@ -104,7 +104,7 @@ describe('User routes', () => {
   });
 
   it('DELETE post by id', async () => {
-    const post1 = await agent
+    await agent
       .post('/api/v1/posts')
       .send({
         photoUrl: 'URL',
@@ -112,14 +112,13 @@ describe('User routes', () => {
         tags: ['a', 'b']
       });
 
-    const res = await Post.deleteItem(post1.body.id);
-    agent.delete(`/api/v1/posts/${post1.id}`);
+    const res = await agent.delete('/api/v1/posts/1');
 
     expect(res.body).toEqual({ 
       id: '1',
       userId: '1',
       photoUrl: 'URL',
-      caption: 'banana',
+      caption: 'oohlala',
       tags: ['a', 'b'] });
   });
 });
