@@ -102,4 +102,24 @@ describe('User routes', () => {
       tags: ['a', 'b']
     });
   });
+
+  it('DELETE post by id', async () => {
+    const post1 = await agent
+      .post('/api/v1/posts')
+      .send({
+        photoUrl: 'URL',
+        caption: 'oohlala',
+        tags: ['a', 'b']
+      });
+
+    const res = await Post.deleteItem(post1.body.id);
+    agent.delete(`/api/v1/posts/${post1.id}`);
+
+    expect(res.body).toEqual({ 
+      id: '1',
+      userId: '1',
+      photoUrl: 'URL',
+      caption: 'banana',
+      tags: ['a', 'b'] });
+  });
 });
