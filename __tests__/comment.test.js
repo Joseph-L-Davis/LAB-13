@@ -33,4 +33,22 @@ describe('Comment routes', () => {
     });
   });
 
+  it('DELETE comment', async () => {
+    await agent.post('/api/v1/comments')
+      .send({
+        commentBy: '1',
+        post: '1',
+        comment: 'nice legs!'
+      });
+
+    const res = await agent.delete('/api/v1/comments/1');
+
+    expect(res.body).toEqual({
+      id: '1',
+      commentBy: '1',
+      post: '1',
+      comment: 'nice legs!'
+    });
+  });
+
 });
