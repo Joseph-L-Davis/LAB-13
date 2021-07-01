@@ -20,8 +20,17 @@ describe('Comment routes', () => {
     const res = await agent
       .post('/api/v1/comments')
       .send({
-          
+        commentBy: '1',
+        post: '1',
+        comment: 'nice legs!'
       });
+
+    expect(res.body).toEqual({
+      id: '1',
+      commentBy: '1',
+      post: '1',
+      comment: 'nice legs!'
+    });
   });
 
 });
